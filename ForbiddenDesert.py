@@ -8,6 +8,24 @@ pygame.display.init()
 # Import the other files
 import Globals, Display, Controls
 
+# Initialising loop
+Started = False
+Title = Display.Text("Forbidden Desert#", (Globals.ScreenW / 2, Globals.ScreenH / 3), True, (0, 0, 0), Globals.LargeScroll)
+Title.Output()
+Players = 2
+PlayerText = Display.Text(str(Players) + "#", (Globals.ScreenW / 2, Globals.ScreenH / 3 * 2), True, (0, 0, 0), Globals.MidScroll)
+PlayerText.Output()
+while not Started:
+        # Update the position of the mouse
+        Globals.MouseColl.rect.topleft = pygame.mouse.get_pos()
+        # The background
+        Globals.Screen.blit(Globals.Back, (0, 0))
+        # Draw any text
+        for item in Globals.Texts:
+                item.Output()      
+        pygame.display.update()
+        Globals.Time.tick(40)
+
 # Main program
 Display.Update()
 while not Globals.Won and not Globals.Deaded:

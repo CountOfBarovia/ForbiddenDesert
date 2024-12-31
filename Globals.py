@@ -118,8 +118,8 @@ Navigator = Cards.Player("Navigator")
 WaterCarrier = Cards.Player("WaterCarrier")
 AdventurerCards = Cards.Deck(None, [Archeologist, Climber, Explorer, Meteorologist, Navigator, WaterCarrier])
 AdventurerCards.Shuffle()
-Adventurers = [Navigator, Explorer, Climber, Archeologist]
-ActivePlayer = Adventurers[0]
+Adventurers = []
+ActivePlayer = None
 Actions = 4
 
 # The board

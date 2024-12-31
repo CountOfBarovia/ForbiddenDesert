@@ -90,7 +90,7 @@ def Update(**Effects):
                                 player.handhover = False
         if Globals.PlayerSelect:
                 for player in Globals.Adventurers:
-                        if pygame.sprite.collide_rect(player.collrect, Globals.MouseColl): player.hover = True
+                        if pygame.sprite.collide_rect(player.collrect, Globals.MouseColl) and not (Globals.ActivePlayer.name == "Navigator" and player.name == "Navigator"): player.hover = True
                         else: player.hover = False
         elif not Globals.Grow:
             for player in Globals.Adventurers:
