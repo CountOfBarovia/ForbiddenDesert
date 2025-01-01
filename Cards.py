@@ -243,7 +243,7 @@ class Player(Card):
         else: Globals.Diagonal = False
         if Globals.ActivePlayer.name == "Climber":
             Globals.Purpose = "ClimberMove"
-            Player = Find(None, "Player")
+            Player = Controls.Find(None, "Player")
             Globals.Purpose = None
         else: Player = None
         Globals.Purpose = "Move"
