@@ -58,10 +58,13 @@ for i in range(0, Players):
         index = random.randint(0, len(Globals.AdventurerCards.contents) - 1)
         Globals.Adventurers.append(Globals.AdventurerCards.contents[index])
         Globals.AdventurerCards.contents.pop(index)
+for row in Globals.Area.Layout:
+        for tile in row:
+                if tile.type == "C":
+                        tile.player = Globals.Adventurers
 
 # Main program
 Display.Update()
-print(Globals.Area.Layout[0][0])
 while not Globals.Won and not Globals.Deaded:
         for player in range(len(Globals.Adventurers)):
                 Globals.CardsToDraw = Globals.StormIntensity
