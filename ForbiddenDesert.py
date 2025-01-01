@@ -61,8 +61,8 @@ for i in range(0, Players):
 for row in Globals.Area.Layout:
         for tile in row:
                 if tile.type == "C":
-                        tile.player = Globals.Adventurers
-
+                        for player in Globals.Adventurers:
+                                tile.player.append(player)
 # Main program
 Display.Update()
 while not Globals.Won and not Globals.Deaded:
