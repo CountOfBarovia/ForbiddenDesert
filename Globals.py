@@ -176,3 +176,4 @@ EnterButton.different = True
 
 Won = False
 Deaded = False
+QUIT = False

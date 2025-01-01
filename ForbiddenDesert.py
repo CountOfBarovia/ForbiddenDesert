@@ -1,7 +1,7 @@
 # Forbidden Desert board game digitalisation
 
 # Initialising pygame and the RNG
-import pygame, random
+import pygame, random, sys
 pygame.init()
 pygame.display.init()
 
@@ -18,9 +18,11 @@ Players = 2
 PlayerText = Display.Text(str(Players) + "#", (Globals.ScreenW / 2, Globals.ScreenH / 3 * 2), False, (255, 255, 255), Globals.MidScroll)
 PlayerText.Output()
 pygame.display.update()
-while not Started:
+while not Started and not Globals.QUIT:
         for event in pygame.event.get():
-                if event.type == pygame.QUIT: pygame.quit()
+                if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
                 if event.type == pygame.MOUSEBUTTONUP:
                         if Globals.LeftArrow.hover:
                                 Players -= 1
@@ -65,19 +67,20 @@ for row in Globals.Area.Layout:
                                 tile.player.append(player)
 # Main program
 Display.Update()
-while not Globals.Won and not Globals.Deaded:
+while not Globals.Won and not Globals.Deaded and not Globals.QUIT:
         for player in range(len(Globals.Adventurers)):
                 Globals.CardsToDraw = Globals.StormIntensity
                 Globals.ActivePlayer = Globals.Adventurers[player]
                 Globals.Actions = 4
-                while Globals.Actions > 0:
+                while Globals.Actions > 0 and not Globals.QUIT:
                         Prompt = Display.Text("Player " + str(player + 1) + "! Actions: " + str(Globals.Actions) + "#", (Globals.ScreenW / 2, Globals.ScreenH - 30), True, (0, 0, 0), Globals.MidScroll)
                         Prompt.Output()
                         Controls.Find(False, "Control")
                         Prompt.Delete()
                         Globals.Actions -= 1
                 Controls.Wait()
-                Globals.StormDeck.Draw(Globals.CardsToDraw)
+                if not Globals.QUIT:
+                        Globals.StormDeck.Draw(Globals.CardsToDraw)
         Display.Update()
 
 Controls.Wait()

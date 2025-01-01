@@ -1,4 +1,4 @@
-import pygame, Globals
+import pygame, Globals, sys
 
 class Scroll:
         def __init__(self, Font, buff):
@@ -55,7 +55,10 @@ class Text:
 
 def Update(**Effects):
         for event in pygame.event.get():
-                if event.type == pygame.QUIT: pygame.quit()
+                if event.type == pygame.QUIT:
+                        Globals.QUIT = True
+                        pygame.quit()
+                        sys.exit()
         # Update the position of the mouse
         Globals.MouseColl.rect.topleft = pygame.mouse.get_pos()
         # The background

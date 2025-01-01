@@ -55,10 +55,10 @@ def Find(Adjacent, Purpose):
                                                 if Adjacent == True:
                                                         return Globals.Area.Layout[Column][Row]
                                                 elif Globals.Diagonal and not (Column == Adjacent[0] and Row == Adjacent[1]):
-                                                        if Adjacent[0] <= Column + 1 and Adjacent[0] >= Column - 1 and Adjacent[1] <= Row + 1 and Adjacent[1] >= Row - 1:
+                                                        if (Adjacent[0] <= Column + 1 and Adjacent[0] >= Column - 1 and Adjacent[1] <= Row + 1 and Adjacent[1] >= Row - 1) or (Globals.Area.Layout[Column][Row].type == "T" and Globals.Area.Layout[Adjacent[0]][Adjacent[1]].type == "T"):
                                                                 return Globals.Area.Layout[Column][Row]
                                                 elif not (Column == Adjacent[0] and Row == Adjacent[1]):
-                                                        if (Adjacent[0] <= Column + 1 and Adjacent[0] >= Column - 1 and Adjacent[1] == Row) or (Adjacent[1] <= Row + 1 and Adjacent[1] >= Row - 1 and Adjacent[0] == Column):
+                                                        if ((Adjacent[0] <= Column + 1 and Adjacent[0] >= Column - 1 and Adjacent[1] == Row) or (Adjacent[1] <= Row + 1 and Adjacent[1] >= Row - 1 and Adjacent[0] == Column)) or (Globals.Area.Layout[Column][Row].type == "T" and Globals.Area.Layout[Adjacent[0]][Adjacent[1]].type == "T"):
                                                                 return Globals.Area.Layout[Column][Row]
         while not Complete and Purpose == "Control":
                 Globals.Grow = True
