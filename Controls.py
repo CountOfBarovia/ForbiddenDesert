@@ -154,18 +154,31 @@ class Button(pygame.sprite.Sprite):
                 self.radius = 25
                 self.pos = pos
                 self.hover = False
+                # Is the button a different shape to the others?
+                self.different = False
 
         def update(self):
-                if pygame.sprite.collide_circle(Globals.MouseColl, self):
+                if pygame.sprite.collide_circle(Globals.MouseColl, self) and not self.different:
                         self.hover = True
                         self.radius = 30
                         self.rect.center = (self.pos[0] - 5, self.pos[1] - 5)
                         self.image = pygame.transform.scale(self.srcimage, (60, 60))
-                else:
+                elif pygame.sprite.collide_rect(Globals.MouseColl, self.collrect) and self.different:
+                        self.hover = True
+                        self.image = pygame.transform.scale(self.srcimage, (170, 47 * 17/16))
+                        self.rect = self.srcimage.get_rect()
+                        self.rect.center = self.pos
+                elif not self.different:
                         self.hover = False
                         self.radius = 25
                         self.rect.center = self.pos
                         self.image = pygame.transform.scale(self.srcimage, (50, 50))
+                elif self.different:
+                        self.hover = False
+                        self.image = pygame.transform.scale(self.srcimage, (160, 47))
+                        self.rect = self.srcimage.get_rect()
+                        self.rect.center = self.pos
+                self.collrect = CollRect((self.pos[0] - self.image.get_size()[0] / 2, self.pos[1] - self.image.get_size()[1] / 2), (self.rect.w, self.rect.h))
                 self.image.set_colorkey((0, 0, 255))
 
 # Class for collision checker rectangles

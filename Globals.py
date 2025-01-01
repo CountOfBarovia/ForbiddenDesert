@@ -65,6 +65,8 @@ if ScreenH / 5 * 8 > ScreenW:
     Back = pygame.transform.scale(pygame.image.load("Misc images/Dunes.jpeg"), (ScreenH / 5 * 8, ScreenH))
 else:
     Back = pygame.transform.scale(pygame.image.load("Misc images/Dunes.jpeg"), (ScreenW, ScreenW / 8 * 5))
+WoodenBack = pygame.surface.Surface((ScreenW, ScreenH))
+WoodenBack.blit(pygame.transform.scale(pygame.image.load("Misc images/WoodenTable.jpg"), (ScreenH / 200 * 356, ScreenH)), (0, 0))
 
 # Initialising the cards and the decks
 CardList = {
@@ -164,6 +166,13 @@ CancelButton = Controls.Button(CancelButtonImg, (800, 320))
 SuccessButtonImg = pygame.image.load("Misc images/SuccessButton.png")
 SuccessButton = Controls.Button(SuccessButtonImg, (800, 515))
 Buttons = pygame.sprite.Group(MoveButton, DigButton, SpecialButton)
+ArrowImg = pygame.image.load("Misc images/Arrow.png")
+LeftArrow = Controls.Button(ArrowImg, (ScreenW / 2 - 100, ScreenH / 3 * 2))
+RightArrow = Controls.Button(pygame.transform.flip(ArrowImg, True, False), (ScreenW / 2 + 100, ScreenH / 3 * 2))
+EnterButtonImg = pygame.image.load("Misc images/EnterButton.png")
+EnterButtonImg.set_colorkey((0, 0, 255))
+EnterButton = Controls.Button(EnterButtonImg, (ScreenW / 2, ScreenH / 5 * 4))
+EnterButton.different = True
 
 Won = False
 Deaded = False
