@@ -54,6 +54,8 @@ class Text:
                 Globals.Texts.remove(self)
 
 def Update(**Effects):
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT: pygame.quit()
         # Update the position of the mouse
         Globals.MouseColl.rect.topleft = pygame.mouse.get_pos()
         # The background

@@ -117,13 +117,18 @@ class StormCard(Card):
         if self.name == "SunBeatsDown":
             # All players lose one water unless they use a solar shield or are in a tunnel
             for item in Globals.Adventurers:
-                protected = False
+                item.protected = False
+                pos = item.Locate()
+                tile = Globals.Area.Layout[pos[0]][pos[1]]
+                if tile.type == "T" and tile.revealed: item.protected = True
+                for other in tile.player:
+                    if other.protected: item.protected
                 for card in item.hand.contents:
-                    if card.name == "SolarShield":
-                        protected = True
+                    if card.name == "SolarShield" and not item.protected:
+                        item.protected = True
                         card.Draw(Globals.TechDiscard)
                         item.hand.contents.remove(card)
-                if not protected:
+                if not item.protected:
                     item.water -= 1
                     if item.water == 0:
                         Globals.Deaded = True
@@ -162,6 +167,7 @@ class Player(Card):
         self.pawn = pygame.transform.scale(self.pawn, (22.5, 50))
         self.pawn.set_colorkey((0, 0, 255))
         self.treasures = []
+        self.protected = False
 
     # Subroutine to output the card (with the water ticker)
     def Display(self):
