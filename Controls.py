@@ -122,7 +122,7 @@ def Find(Adjacent, Purpose):
                                 User.hand.contents.remove(card)
                                 if User.name == "Explorer": Globals.Diagonal = True
                                 else: Globals.Diagonal = False
-                                card.Use(User.Locate(), User)
+                                card.Use(Globals.Position, User)
 
         while Purpose == "Player" and not Complete:
                 Globals.PlayerSelect = True
@@ -140,7 +140,7 @@ def Find(Adjacent, Purpose):
 # Subroutine to wait for a click
 def Wait():
         clicked = False
-        while not clicked:
+        while not clicked and not Globals.QUIT:
                 Display.Update()
                 for event in pygame.event.get():
                         if event.type == pygame.MOUSEBUTTONUP or event.type == pygame.KEYDOWN:
