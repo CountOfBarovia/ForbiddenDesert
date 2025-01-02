@@ -63,14 +63,21 @@ class TechCard(Card):
                 self.Draw(Globals.TechDiscard)
             else: user.hand.contents.append(self)
         elif self.name == "Jetpack":
+            Globals.User = user
+            Globals.Purpose = "Jetpack"
+            Player = Controls.Find(True, "Player")
             Globals.Purpose = "Jetpack"
             NewTile = Controls.Find(True, "Move")
-            while NewTile == None or NewTile == Globals.Area.Layout[pos[0]][pos[1]]:
+            while NewTile == Globals.Area.Layout[pos[0]][pos[1]]:
                 NewTile = Controls.Find(True, "Move")
+            Globals.User = None
             Globals.Purpose = None
             if NewTile != None:
                 NewTile.player.append(user)
                 Globals.Area.Layout[pos[0]][pos[1]].player.remove(user)
+                if Player != None:
+                    NewTile.player.append(Player)
+                    Globals.Area.Layout[pos[0]][pos[1]].player.remove(user)
                 self.Draw(Globals.TechDiscard)
             else: user.hand.contents.append(self)
         elif self.name == "Terrascope":

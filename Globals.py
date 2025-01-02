@@ -133,6 +133,7 @@ Diagonal = False
 Purpose = None
 Position = None
 PlayerSelect = False
+User = None
 
 # The Storm Meter
 Meter0 = pygame.transform.scale(pygame.image.load("Misc images/Meter0.png"), (ScreenH * 0.5 * 0.37, ScreenH * 0.5))
