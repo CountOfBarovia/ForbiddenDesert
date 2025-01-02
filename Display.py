@@ -8,14 +8,14 @@ class Scroll:
 
         # Subroutine to display an onscreen message
         def Post(self, text, pos, back, col):
-                from Globals import Screen
                 lines = []
                 for i in range(text.count("#")):
                         lines.append(text[0:text.find("#")])
                         text = text[text.find("#") + 1:len(text)]
                         w, h = self.font.size(lines[0])
-                        if self.font.size(lines[0])[0] > w:
-                                w, h = self.font.size(lines[0])     
+                        for line in lines:
+                                if self.font.size(line)[0] > w:
+                                        w, h = self.font.size(line)     
                 h += 2
                 h *= len(lines)
                 buff = self.buff

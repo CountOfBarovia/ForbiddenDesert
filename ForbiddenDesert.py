@@ -92,9 +92,22 @@ while Globals.Won:
                         sys.exit()
                 elif event.type == pygame.MOUSEBUTTONUP: Globals.Won = False
         # Create a scenic outro
-        Congrats = Display.Text("You win!#", (Globals.ScreenW / 2, Globals.ScreenH / 4), False, (0, 0, 0), Globals.LargeScroll)
+        Congrats = Display.Text("YOU WIN!#", (Globals.ScreenW / 2, Globals.ScreenH / 4), False, (0, 0, 0), Globals.LargeScroll)
         Globals.Screen.blit(Globals.Sky, (0, 0))
         Globals.Screen.blit(Globals.Ship, Globals.ShipRect)
+        for Text in Globals.Texts: Text.Output()
+        pygame.display.update()
+        Globals.Time.tick(40)
+
+while Globals.Deaded:
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                elif event.type == pygame.MOUSEBUTTONUP: Globals.Deaded = False
+        # A friendly skull
+        Death = Display.Text(Globals.Reason, (Globals.ScreenW / 2, Globals.ScreenH * 4/5), False, (163, 47, 39), Globals.LargeScroll)
+        Globals.Screen.blit(Globals.HostileDesert, (Globals.ScreenW / 2 - Globals.HostileDesert.get_size()[0] / 2, 0))
         for Text in Globals.Texts: Text.Output()
         pygame.display.update()
         Globals.Time.tick(40)

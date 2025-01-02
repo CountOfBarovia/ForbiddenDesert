@@ -180,6 +180,7 @@ Deaded = False
 QUIT = False
 
 # Endgame variables
+Reason = None
 Sky = pygame.image.load("Misc images/Sky.jpg")
 Sky = pygame.transform.scale(Sky, (ScreenW, 3643 * ScreenW / 5464))
 Ship = pygame.image.load("Misc images/Ship.png")
@@ -187,3 +188,5 @@ Ship = pygame.transform.scale(Ship, (2844 * 0.2, 1228 * 0.2))
 Ship.set_colorkey((0, 0, 255))
 ShipRect = Ship.get_rect()
 ShipRect.center = (ScreenW / 2, ScreenH / 2 + 100)
+HostileDesert = pygame.image.load("Misc images/HostileDesert.png")
+HostileDesert = pygame.transform.scale(HostileDesert, (1280 * 700 / ScreenH, ScreenH))

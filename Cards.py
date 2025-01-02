@@ -136,12 +136,16 @@ class StormCard(Card):
                         item.hand.contents.remove(card)
                 if not item.protected:
                     item.water -= 1
-                    if item.water == 0:
+                    if item.water == -1:
+                        Globals.Reason = "YOU DIED#OF THIRST#"
                         Globals.Deaded = True
+                        Controls.Wait()
         elif self.name == "StormPicksUp":
             Globals.StormLevel += 1
             if Globals.StormLevel == 15:
+                Globals.Reason = "THE STORM#SWEPT YOU AWAY"
                 Globals.Deaded = True
+                Controls.Wait()
         elif "Up" in self.name:
             Globals.Area.Up(int(self.name[2]))
         elif "Down" in self.name:
@@ -253,7 +257,7 @@ class Player(Card):
         OldPos = self.Locate()
         if self.name == "Explorer": Globals.Diagonal = True
         else: Globals.Diagonal = False
-        if Globals.ActivePlayer.name == "Climber":
+        if self.name == "Climber":
             Globals.Purpose = "ClimberMove"
             Player = Controls.Find(None, "Player")
             Globals.Purpose = None
@@ -282,8 +286,10 @@ class Player(Card):
             return True
         elif self.name == "Navigator":
             player = Controls.Find(None, "Player")
-            for i in range(0, 3):
-                player.Move()
+            Complete = False
+            if player != None:
+                for i in range(0, 3):
+                    Complete = player.Move()
 
 # Generic class for a store of cards
 class Deck:
