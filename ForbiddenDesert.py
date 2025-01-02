@@ -83,6 +83,8 @@ while not Globals.Won and not Globals.Deaded and not Globals.QUIT:
                 Controls.Wait()
                 if not Globals.QUIT:
                         Globals.StormDeck.Draw(Globals.CardsToDraw)
+                        print(Globals.StormDiscard.contents[0].name)
+        print("NEXT")
         if not Display.Update():
                 break
 

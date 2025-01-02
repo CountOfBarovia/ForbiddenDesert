@@ -134,6 +134,8 @@ class StormCard(Card):
                         item.protected = True
                         card.Draw(Globals.TechDiscard)
                         item.hand.contents.remove(card)
+                for other in tile.player:
+                    if item.protected: other.protected
                 if not item.protected:
                     item.water -= 1
                     if item.water < 0:
@@ -164,7 +166,7 @@ class Player(Card):
             self.watercap = 3
         else:
             self.watercap = 4
-        self.water = self.watercap
+        self.water = 0
         self.hand = Deck(None, [])
         self.hand.back = Globals.CardList["TechBack"]
         self.hand_displayed = False

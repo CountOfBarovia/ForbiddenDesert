@@ -141,8 +141,7 @@ def Find(Adjacent, Purpose):
 # Subroutine to wait for a click
 def Wait():
         clicked = False
-        while not clicked and not Globals.QUIT:
-                Display.Update()
+        while Display.Update() and not clicked and not Globals.QUIT:
                 for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                                 pygame.quit()
