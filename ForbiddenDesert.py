@@ -4,6 +4,7 @@
 import pygame, random, sys
 pygame.init()
 pygame.display.init()
+print(pygame.MOUSEBUTTONUP, pygame.MOUSEBUTTONDOWN, pygame.MOUSEMOTION)
 
 # Import the other files
 import Globals, Display, Controls
@@ -65,6 +66,8 @@ for row in Globals.Area.Layout:
                 if tile.type == "C":
                         for player in Globals.Adventurers:
                                 tile.player.append(player)
+Globals.StormMeter.reinit(len(Globals.Adventurers), Globals.StormLevel)
+
 # Main program
 Display.Update()
 while not Globals.Won and not Globals.Deaded and not Globals.QUIT:

@@ -54,11 +54,6 @@ class Text:
                 Globals.Texts.remove(self)
 
 def Update(**Effects):
-        for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                        Globals.QUIT = True
-                        pygame.quit()
-                        sys.exit()
         # Update the position of the mouse
         Globals.MouseColl.rect.topleft = pygame.mouse.get_pos()
         # The background
@@ -173,3 +168,5 @@ def Update(**Effects):
                                 Globals.Screen.blit(BigImage, (Globals.ScreenW / 2 - BigImage.get_size()[0] / 2, Globals.ScreenH / 2 - BigImage.get_size()[1] / 2))
         pygame.display.update()
         Globals.Time.tick(40)
+        # Crash program if quit button is pressed
+        if Globals.QUIT: Globals.Fake = Fake

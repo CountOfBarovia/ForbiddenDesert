@@ -420,6 +420,30 @@ class Meter:
                 Globals.StormLevel = self.level
                 self.pos = (Globals.ScreenW - 50 - self.image.get_size()[0], Globals.ScreenH / 2 - 10)
 
+        # Subroutine to re-initialise the meter
+        def reinit(self, players, level):
+                if players < 4: self.image = Globals.Meter0
+                else: self.image = Globals.Meter1
+                self.level = level
+                self.intensity = 3
+                if players == 2:
+                        self.level += Globals.Difficulty + 2
+                        if self.level == 2: self.intensity = 2
+                if players == 3 or players == 4:
+                        self.level += Globals.Difficulty + 1
+                        if self.level == 1: self.intensity = 2
+                if players == 5:
+                        self.level += Globals.Difficulty
+                        if self.level == 0: self.intensity = 2
+                if players >= 4:
+                        self.scale = 15
+                        self.start = 26
+                else:
+                        self.scale = 14.9
+                        self.start = 24
+                Globals.StormLevel = self.level
+                self.pos = (Globals.ScreenW - 50 - self.image.get_size()[0], Globals.ScreenH / 2 - 10)
+
         # Subroutine to display the meter
         def update(self):
                 self.level = Globals.StormLevel

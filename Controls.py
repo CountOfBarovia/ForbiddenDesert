@@ -1,4 +1,4 @@
-import pygame, Globals, Display
+import pygame, Globals, Display, sys
 pygame.init()
 
 # Subroutine to allow the player to select something
@@ -143,6 +143,9 @@ def Wait():
         while not clicked and not Globals.QUIT:
                 Display.Update()
                 for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                                pygame.quit()
+                                sys.exit()
                         if event.type == pygame.MOUSEBUTTONUP or event.type == pygame.KEYDOWN:
                                 clicked = True
 
