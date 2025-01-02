@@ -123,9 +123,13 @@ def Find(Adjacent, Purpose):
                                 if User.name == "Explorer": Globals.Diagonal = True
                                 else: Globals.Diagonal = False
                                 card.Use(User.Locate(), User)
+
         while Purpose == "Player" and not Complete:
                 Globals.PlayerSelect = True
+                Text = Display.Text("Choose a player#", (Globals.ScreenW / 2, Globals.ScreenH / 2), True, (0, 0, 0), Globals.MidScroll)
+                Text.Output()
                 Wait()
+                Text.Delete()
                 Globals.PlayerSelect = False
                 for player in Globals.Adventurers:
                     if player.hover:
