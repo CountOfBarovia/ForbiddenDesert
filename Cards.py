@@ -136,10 +136,9 @@ class StormCard(Card):
                         item.hand.contents.remove(card)
                 if not item.protected:
                     item.water -= 1
-                    if item.water == -1:
+                    if item.water < 0:
                         Globals.Reason = "YOU DIED#OF THIRST#"
                         Globals.Deaded = True
-                        Controls.Wait()
         elif self.name == "StormPicksUp":
             Globals.StormLevel += 1
             if Globals.StormLevel == 15:
@@ -288,8 +287,11 @@ class Player(Card):
             player = Controls.Find(None, "Player")
             Complete = False
             if player != None:
+                Globals.ActivePlayer = player
                 for i in range(0, 3):
                     Complete = player.Move()
+                Globals.ActivePlayer = Globals.Navigator
+            return Complete
 
 # Generic class for a store of cards
 class Deck:

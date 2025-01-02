@@ -97,6 +97,7 @@ def Find(Adjacent, Purpose):
                                 Globals.ActivePlayer.treasures.append(tile.treasure)
                                 tile.treasure.collected = True
                                 tile.treasure = None
+                                Complete = True
                         else: Globals.Won = True
                 elif Globals.SpecialButton.hover and Globals.Buttons.has(Globals.SpecialButton):
                         Complete = Globals.ActivePlayer.Power()

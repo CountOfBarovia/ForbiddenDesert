@@ -83,7 +83,8 @@ while not Globals.Won and not Globals.Deaded and not Globals.QUIT:
                 Controls.Wait()
                 if not Globals.QUIT:
                         Globals.StormDeck.Draw(Globals.CardsToDraw)
-        Display.Update()
+        if not Display.Update():
+                break
 
 while Globals.Won:
         for event in pygame.event.get():

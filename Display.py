@@ -54,6 +54,9 @@ class Text:
                 Globals.Texts.remove(self)
 
 def Update(**Effects):
+        # Check whether the game is over
+        if Globals.Won or Globals.Deaded:
+                return False
         # Update the position of the mouse
         Globals.MouseColl.rect.topleft = pygame.mouse.get_pos()
         # The background
@@ -168,3 +171,4 @@ def Update(**Effects):
                                 Globals.Screen.blit(BigImage, (Globals.ScreenW / 2 - BigImage.get_size()[0] / 2, Globals.ScreenH / 2 - BigImage.get_size()[1] / 2))
         pygame.display.update()
         Globals.Time.tick(40)
+        return True
