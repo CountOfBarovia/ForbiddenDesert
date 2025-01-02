@@ -168,5 +168,3 @@ def Update(**Effects):
                                 Globals.Screen.blit(BigImage, (Globals.ScreenW / 2 - BigImage.get_size()[0] / 2, Globals.ScreenH / 2 - BigImage.get_size()[1] / 2))
         pygame.display.update()
         Globals.Time.tick(40)
-        # Crash program if quit button is pressed
-        if Globals.QUIT: Globals.Fake = Fake

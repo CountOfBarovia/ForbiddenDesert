@@ -4,7 +4,6 @@
 import pygame, random, sys
 pygame.init()
 pygame.display.init()
-print(pygame.MOUSEBUTTONUP, pygame.MOUSEBUTTONDOWN, pygame.MOUSEMOTION)
 
 # Import the other files
 import Globals, Display, Controls
@@ -85,5 +84,21 @@ while not Globals.Won and not Globals.Deaded and not Globals.QUIT:
                 if not Globals.QUIT:
                         Globals.StormDeck.Draw(Globals.CardsToDraw)
         Display.Update()
+
+while Globals.Won:
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                elif event.type == pygame.MOUSEBUTTONUP: Globals.Won = False
+        # Create a scenic outro
+        Congrats = Display.Text("You win!#", (Globals.ScreenW / 2, Globals.ScreenH / 4), False, (0, 0, 0), Globals.LargeScroll)
+        Globals.Screen.blit(Globals.Sky, (0, 0))
+        Globals.Screen.blit(Globals.Ship, Globals.ShipRect)
+        for Text in Globals.Texts: Text.Output()
+        pygame.display.update()
+        Globals.Time.tick(40)
+
+Globals.Texts = []
 
 Controls.Wait()
