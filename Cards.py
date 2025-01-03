@@ -166,7 +166,7 @@ class Player(Card):
             self.watercap = 3
         else:
             self.watercap = 4
-        self.water = 0
+        self.water = self.watercap
         self.hand = Deck(None, [])
         self.hand.back = Globals.CardList["TechBack"]
         self.hand_displayed = False
